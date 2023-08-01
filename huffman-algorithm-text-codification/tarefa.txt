@@ -1,0 +1,39 @@
+Parte 1 - compactação
+
+Implemente o algoritmo de Huffman para compactar arquivos textos em um novo padrão chamado UERN ZIP da seguinte maneira:
+1) Conte os caracteres de um arquivo texto de entrada a ser compactado que está salvo usando a codificação ASCII extendida (ISO).
+2) Com base nesta contagem, implemente o algoritmo de Huffman para construir a trie de codificação, atribuindo 1 ao código que tiver mais ocorrências e 0 ao de menor.
+3) Construa uma tabela que contenha o código binário para cada caractere do arquivo.
+4) Crie o arquivo compactado com a extensão .uzip de forma que seu conteúdo tenha a seguinte sequência:
+    - 8 bits(um byte) representando um número N de diferentes caracteres que apareceram no arquivo texto original;
+    - Uma sequência de N conjuntos representando os códigos de cada caractere segundo o algoritmo de codificação de Huffman com o seguinte formato
+    -- 8 bits representando o código do caractere em ASCII extendido;
+    -- 4 bits para representar um número T (até 15) com o tamanho do código definido para aquele caractere;
+    -- T bits com o código daquele caractere segundo o algoritmo de Huffman.
+    - O restante do arquivo representará o conteúdo do arquivo original codificado de acordo com a tabela gerada. Se no final a quantidade de bits não completar um byte, complete o conteúdo com bits 0.
+
+Ex: imagine que em um arquivo apareçam 3 caracteres diferentes, e que os códigos ficaram A--> 00, B --> 01, C --> 110. Se o conteúdo do arquivo fosse AAABBBCC, o conteúdo do arquivo seria:
+00000011 (número 3, representando o número de caracteres diferentes que apareceram)
+01000001 (código ascii do caractere A)
+0010 (representando o número 2, que é o tamanho do código do caractere A)
+00 (representando o código atribuído ao caractere A)
+01000010 (código ascii do caractere B)
+0010 (representando o número 2, que é o tamanho do código do caractere B)
+01 (representando o código atribuído ao caractere B)
+01000011 (código ascii do caractere C)
+0011 (representando o número 3, que é o tamanho do código do caractere C)
+110 (representando o código atribuído ao caractere C)
+000000010101110110 (representando o arquivo original com "AAABBBCC" codificado)
+Isso dá um total de 69 bits. Como os arquivos são armazendados em bytes, preencheriamos o arquivo com mais 3 bits 0 para formar um total de 72 bits (ou 8 bytes).
+
+Parte 2 - descompactação
+
+Leia o arquivo com a extensão .uzip, seguindo o formato da compactação descrito anteriormente. Descompacte o arquivo segundo os passos a seguir:
+1) Reconstrua a trie para decodificar o conteúdo.
+2) Leia o conteúdo e vá gerando caractere a caractere.
+3) Grave o arquivo de saída e verifique se ele está igual ao original.
+
+Para testar o programa utilize os arquivos que contém as poesias da mossorense Margareth Freire, disponíveis no link https://github.com/sebastiaoalves/org-rec-info/tree/main/codificacao-texto/exemplos/poesias-margareth-freire.
+Compare o tamanho do arquivo original e do arquivo uzip para o texto pequeno, com apenas uma poesia, e com o texto com todas as poesias. Escreva um pequeno texto comparando os resultados.
+
+Enviar um link de repostiório do github com os códigos.
