@@ -1,0 +1,30 @@
+Implemente, em uma linguagem de programação a sua escolha, um simulador de gerência de sistemas de arquivos.
+
+Admita o seguinte:
+
+     O tamanho do disco é fixo e, para fins da execução, deve ser de 2048 bytes;
+    O tamanho dos blocos lógicos são de 8 bytes. Cada arquivo deve ocupar uma quantidade inteira de blocos, mesmo que não use todo seu espaço.
+    A alocação dos arquivos deve ser sequencial, de modo que o arquivo será alocado no 1º bloco livre do espaço contíguo suficiente para que ele seja alocado.
+
+O programa deve iniciar com o disco completamente vazio e oferecer ao usuário as seguintes opções:
+
+    Criar um arquivo: deverá ser perguntado o nome do arquivo (que deve ser único) e o tamanho em bytes que ele ocupa. A partir dessas informações o sistema deve marcar como ocupados a quantidade de blocos suficiente para armazená-lo.
+    Remover um arquivo: deverá ser perguntado o nome dele e então o seu registro no sistema deve ser apagado e o espaço que ele ocupava deverá ser marcado como livre;
+    Exibir informações de arquivo: deverá ser perguntado o nome do arquivo, e então o programa deve exibir o seu tamanho e os blocos iniciais/finais ocupados por ele;
+    Desfragmentar: O sistema deve atualizar as entradas das informações dos arquivos de modo que não haja espaços em branco entre os arquivos.
+
+Algumas situações merecem atenção, como:
+
+    Não permitir a criação de arquivos com nomes iguais;
+    Verificar se existe espaço em branco contíguo suficiente para armazenar o arquivo;
+    Não apagar arquivo que não existe;
+    Manter os tamanhos originais dos arquivos quando desfragmentar o disco.
+
+O trabalho será em grupo, o mesmo que apresentou o seminário.
+
+Valor: 3,5.
+
+Pode ser dado 1,0 extra, sendo necessário cumprir o seguinte adicionalmente:
+
+    Ao invés de perguntar apenas o tamanho do arquivo, deve-se ler um conjunto de caracteres que serão os dados dos arquivos. Esse conteúdo, deverá ser armazenado em um vetor contínuo que simula o disco, de acordo com os blocos. Em caso de espaço em branco no bloco ou remoção de arquivo, o conteúdo no vetor deve permanecer o mesmo. Em caso de desfragmentação, o conteúdo deve ser movido no vetor de acordo com a organização dos blocos;
+    Ao final da execução, o programa deve armazenar o conteúdo do sistema de arquivos, bem como o vetor com os conteúdos. Na próxima execução esse conteúdo deve ser carregado ao invés de iniciar novamente do zero.
